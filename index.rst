@@ -10,6 +10,7 @@ Contents:
 
 .. toctree::
    :maxdepth: 2
+   :caption: Contents:
    
    /src/Part0/ch1/开始
    /src/Part1/ch2/变量和基本类型 
