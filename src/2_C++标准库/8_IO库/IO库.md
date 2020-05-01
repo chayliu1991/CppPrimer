@@ -216,17 +216,17 @@ struct PersonInfo
     vector<string> phones;
 };
 
-string line, word;   // will hold a line and word from input, respectively
-vector<PersonInfo> people;    // will hold all the records from the input
-// read the input a line at a time until cin hits end-of-file (or another error)
+string line, word; 
+vector<PersonInfo> people;   
+
 while (getline(cin, line))
 {
-    PersonInfo info;    // create an object to hold this record's data
-    istringstream record(line);    // bind record to the line we just read
-    record >> info.name;    // read the name
-    while (record >> word)  // read the phone numbers
-        info.phones.push_back(word);   // and store them
-    people.push_back(info);    // append this record to people
+    PersonInfo info;    
+    istringstream record(line);    
+    record >> info.name;    
+    while (record >> word)  
+        info.phones.push_back(word);  
+    people.push_back(info);  
 }
 ```
 
@@ -234,23 +234,22 @@ while (getline(cin, line))
 
 ```
 for (const auto &entry : people)
-{ // for each entry in people
-    ostringstream formatted, badNums;   // objects created on each loop
+{ 
+    ostringstream formatted, badNums;   
     for (const auto &nums : entry.phones)
-    { // for each number
+    { 
         if (!valid(nums))
         {
-            badNums << " " << nums;  // string in badNums
+            badNums << " " << nums;  
         }
         else
-            // ''writes'' to formatted's string
             formatted << " " << format(nums);
     }
 
-    if (badNums.str().empty())   // there were no bad numbers
-        os << entry.name << " "  // print the name
-            << formatted.str() << endl;   // and reformatted numbers
-    else  // otherwise, print the name and bad numbers
+    if (badNums.str().empty())  
+        os << entry.name << " "
+            << formatted.str() << endl;  
+    else  
         cerr << "input error: " << entry.name
             << " invalid number(s) " << badNums.str() << endl;
 }
