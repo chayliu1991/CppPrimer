@@ -84,15 +84,16 @@
 -  绑定到整型非类型参数的实参必须是一个常量表达式。
 -  绑定到指针或引用非类型参数的实参必须具有静态的生存期，不能用普通局部变量或动态对象作为指针或引用非类型参数的实参。
 
-内联和constexpr函数模板
-^^^^^^^^^^^^^^^^^^^^^^^
+内联和 ``constexpr`` 函数模板
+^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
 
 函数模板也可以声明为 ``inline`` 或 ``constexpr``
 的，说明符放在模板参数列表之后，返回类型之前。
 
 ::
 
-   template <typename T> inline T min(const T&, const T&);
+   template <typename T> 
+   inline T min(const T&, const T&);
 
 编写类型无关的代码
 ^^^^^^^^^^^^^^^^^^
@@ -286,7 +287,8 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 
 ::
 
-   template <typename T> using partNo = pair<T, unsigned>;
+   template <typename T> 
+   using partNo = pair<T, unsigned>;
 
 类模板的静态成员
 ''''''''''''''''
@@ -295,7 +297,8 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 
 ::
 
-   template <typename T> class Foo {
+   template <typename T> class Foo 
+   {
    public:
        static std::size_t count() { return ctr; }
    private:
@@ -342,15 +345,22 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 
 ::
 
-   template <typename T> int compare(const T &, const T &);
-   template <typename T> class Blob;
+   template <typename T> 
+   int compare(const T &, const T &);
+
+   template <typename T> 
+   class Blob;
 
 与函数参数一样，模板参数的名字不需要在声明和定义之间完全一样，如：
 
 ::
 
-   template <typename T> T calc(const T &, const T &);
-   template <typename U> U calc(const U &, const U &);
+   template <typename T> T 
+   calc(const T &, const T &);
+
+   template <typename U> 
+   U calc(const U &, const U &);
+
    template <typename Type>
    Type calc(const Type &a, const Type &b) { /* ... */ }
 
@@ -372,7 +382,7 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 的变量，不然，就不会被处理为静态数据成员 ``size_type`` 与变量 ``p``
 相乘。
 
-默认情形下，语言认为通过作用域操作符访问的名字不是类型。如果要使用一个模板类型参数的类型成员，必须显式告知编译器这个名字是类型。那就得用
+**默认情形下，语言认为通过作用域操作符访问的名字不是类型。**\ 如果要使用一个模板类型参数的类型成员，必须显式告知编译器这个名字是类型。那就得用
 ``typename`` 这个关键字了。如：
 
 ::
@@ -671,7 +681,7 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 的公有类型成员，表示一个类型。此类型与模板自身的模板类型参数相关。如果不可能（或不必要）转换模板参数，则
 ``type`` 成员就是模板参数类型本身。
 
-|image0|
+|image1|
 
 以上表格中的 ``remove_reference``
 用于获取元素类型，如：\ ``remove_reference<int&>::type`` 的结果是 int
@@ -709,7 +719,7 @@ C++11 中，类模板可以将模板类型参数声明为友元。
 ~~~~~~~~~~~~~~~~~~
 
 如果函数的参数是模板类型的引用，需要记住的是：常见的引用绑定规则依然有效（左值只能绑定到左值，右值只能绑定到右值）；并且此时
-const 是底层 const 而不是顶层 const 。
+const 是底层 const 而不是顶层 ``const``\ 。
 
 左值引用函数参数的类型推断
 ^^^^^^^^^^^^^^^^^^^^^^^^^^
@@ -786,8 +796,8 @@ const 是底层 const 而不是顶层 const 。
    template <typename T> void f(T&&);         
    template <typename T> void f(const T&);    
 
-理解std::move
-~~~~~~~~~~~~~
+理解 ``std::move``
+~~~~~~~~~~~~~~~~~~
 
 ``std::move`` 的定义如下：
 
@@ -1230,4 +1240,4 @@ C++11 在头文件 ``<utility>`` 中定义了 ``forward``\ 。与 ``move``
    Foo<int> fi; //@ instantiates Foo<int>::Foo()
    fi.Bar(); //@ uses our specialization of Foo<int>::Bar()
 
-.. |image0| image:: ./img/type.png
+.. |image1| image:: ./img/type.png
