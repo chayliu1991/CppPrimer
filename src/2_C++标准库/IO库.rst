@@ -1,7 +1,7 @@
-.. contents::
-   :depth: 3
-..
-
+.. toctree::
+   :maxdepth: 2
+   :glob:
+   
 IO库
 ====
 
